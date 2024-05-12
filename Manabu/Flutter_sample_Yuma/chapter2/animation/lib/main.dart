@@ -48,6 +48,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late AnimationController _animationController;
+  late Animation<double> _animationDouble;
+  final Tween<double> _tweenDouble = Tween(begin: 0.0, end: 200.0);
+  late Animation<Color?> _animationColor;
+  final ColorTween _tweenColor = ColorTween(begin: Colors.green, end: Colors.blue);
 
   // 再生
   _forward() async {
@@ -75,6 +79,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _animationController = AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    // TweenとAnimationControllerからAnimationを作る（サイズ）
+    _animationDouble = _tweenDouble.animate(_animationController);
+    _animationDouble.addListener(() {
+      setState(() {});
+    });
+    // TweenとAnimationControllerからAnimationを作る（色）
+    _animationColor = _tweenColor.animate(_animationController);
+    _animationColor.addListener(() {
+      setState(() {});
+    });
   }
 
   // 破棄
@@ -94,13 +108,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text("AnimationController:${_animationController.value}"),
+            Text("AnimationDouble:${_animationDouble.value}"),
+            Text("AnimationColor:${_animationColor.value}"),
             SizeTransition(
               sizeFactor: _animationController, // AnimationControllerを設定
               child: Center(
                 child: SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Container(color: Colors.green))),
+                  width: _animationDouble.value,
+                  height: _animationDouble.value,
+                  child: Container(color: _animationColor.value))),
             ),
           ],
         ),
