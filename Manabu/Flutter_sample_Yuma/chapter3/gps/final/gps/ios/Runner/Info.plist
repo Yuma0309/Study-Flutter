@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- dictタグ内の追記する部分のみ抜粋 -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ロケーション情報を利用する理由を記載</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ロケーション情報を利用する理由を記載</string>
 </dict>
 </plist>
