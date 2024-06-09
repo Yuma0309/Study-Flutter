@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,71 +56,57 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String _latitude = "NoData";
+  String _longitude = "NoData";
+  String _altitude = "NoData";
+  String _distanceInMeters = "NoData";
+  String _bearing = "NoData";
 
-  void _incrementCounter() {
+  Future<void> getLocation() async {
+    // 権限を取得
+    LocationPermission permission = await Geolocator.requestPermission();
+    // 権限がない場合は戻る
+    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+      return;
+    }
+    // 位置情報を取得
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high
+    );
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      // 北緯がプラス、南緯がマイナス
+      _latitude = "緯度: ${position.latitude.toStringAsFixed(2)}";
+      // 東経がプラス、西経がマイナス
+      _longitude = "経度: ${position.longitude.toStringAsFixed(2)}";
+      // 高度
+      _altitude = "高度: ${position.altitude.toStringAsFixed(2)}";
+      // 距離を1000で割ってkmで返す（サンパウロとの距離）
+      _distanceInMeters = "距離: ${(Geolocator.distanceBetween(position.latitude, position.longitude, -23.61, -46.40) / 1000).toStringAsFixed(2)}";
+      // 方位を返す（サンパウロとの方位）
+      _bearing = "方位: ${(Geolocator.bearingBetween(position.latitude, position.longitude, -23.61, -46.40)).toStringAsFixed(2)}";
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Text(_latitude,style: Theme.of(context).textTheme.headline4),
+            Text(_longitude,style: Theme.of(context).textTheme.headline4),
+            Text(_altitude,style: Theme.of(context).textTheme.headline4),
+            Text(_distanceInMeters,style: Theme.of(context).textTheme.headline4),
+            Text(_bearing,style: Theme.of(context).textTheme.headline4),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        onPressed: getLocation, child: const Icon(Icons.location_on)),
     );
   }
 }
