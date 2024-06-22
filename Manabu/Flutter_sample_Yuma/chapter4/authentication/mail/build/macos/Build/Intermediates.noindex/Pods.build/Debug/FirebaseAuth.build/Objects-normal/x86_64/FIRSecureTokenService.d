@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseAuth.build/module.modulemap \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/SystemService/FIRSecureTokenService.m \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/SystemService/FIRSecureTokenService.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuth.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthAPNSTokenType.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthErrors.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuthSerialTaskQueue.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuthTokenResult_Internal.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Public/FirebaseAuth/FIRAuthTokenResult.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Auth/FIRAuth_Internal.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Interop/FIRAuthInterop.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthBackend.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRPCRequest.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRPCResponse.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRLogger.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseCore.build/module.modulemap \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/Target\ Support\ Files/FirebaseCore/FirebaseCore-umbrella.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRApp.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRConfiguration.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRLoggerLevel.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FirebaseCore.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIROptions.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseCore/FirebaseCore/Sources/Public/FirebaseCore/FIRVersion.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/FIRAuthRequestConfiguration.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/build/macos/Build/Intermediates.noindex/Pods.build/Debug/FirebaseAppCheckInterop.build/module.modulemap \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/Target\ Support\ Files/FirebaseAppCheckInterop/FirebaseAppCheckInterop-umbrella.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAppCheckInterop/FirebaseAppCheck/Interop/Public/FirebaseAppCheckInterop/FIRAppCheckInterop.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAppCheckInterop/FirebaseAppCheck/Interop/Public/FirebaseAppCheckInterop/FIRAppCheckProtocol.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAppCheckInterop/FirebaseAppCheck/Interop/Public/FirebaseAppCheckInterop/FIRAppCheckTokenProtocol.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAppCheckInterop/FirebaseAppCheck/Interop/Public/FirebaseAppCheckInterop/FIRAppCheckTokenResultInterop.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAppCheckInterop/FirebaseAppCheck/Interop/Public/FirebaseAppCheckInterop/FirebaseAppCheckInterop.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/RPC/FIRSecureTokenRequest.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseAuth/Sources/Backend/RPC/FIRSecureTokenResponse.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FirebaseCoreInternal.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRAppInternal.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponent.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponentContainer.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRComponentType.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRDependency.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRHeartbeatLogger.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIRLibrary.h \
+  /Users/yumanakamura/Desktop/Programming/Flutter/Sample/Manabu/Flutter_sample_Yuma/chapter4/authentication/mail/macos/Pods/FirebaseAuth/FirebaseCore/Extension/FIROptionsInternal.h
