@@ -73,6 +73,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // ボタンを押した時のイベント
           onPressed: () {
             /* ここにプログラムを記載 */
+            FirebaseFirestore.instance
+              .collection('flutterDataCollection')
+              .doc('flutterDataDocument')
+              .get()
+              .then((ref) {
+                print(ref.get("mydata"));
+              });
           },
           child: const Text(
             '実行',
