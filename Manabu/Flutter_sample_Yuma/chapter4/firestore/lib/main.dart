@@ -74,8 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             /* ここにプログラムを記載 */
             FirebaseFirestore.instance
-              .collection('flutterDataCollection')
-              .doc('flutterDataDocument')
+              .doc('flutterDataCollection/flutterDataDocument')
               .get()
               .then((ref) {
                 print(ref.get("mydata"));
