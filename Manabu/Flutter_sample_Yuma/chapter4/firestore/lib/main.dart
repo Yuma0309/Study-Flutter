@@ -74,8 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             /* ここにプログラムを記載 */
             FirebaseFirestore.instance
-              .collection('autoCollection2')
-              .add({'autofield': "xyz"});
+              .doc('autoCollection1/autoDocument1')
+              .delete();
           },
           child: const Text(
             '実行',
