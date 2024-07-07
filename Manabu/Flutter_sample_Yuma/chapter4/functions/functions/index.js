@@ -12,14 +12,8 @@ const functions = require("firebase-functions");
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-// 5分ごとに実行
-exports.timer1 = functions.pubsub.schedule('every 5 minutes').onRun((context) => {
-  functions.logger.info("timer1 start", {structuredData: true});
-  return null;
-});
-
-// 3分ごとに実行
-exports.timer2 = functions.pubsub.schedule('*/3****').onRun((context) => {
-  functions.logger.info("timer2 start", {structuredData: true});
+// DBの書き換え時に実行
+exports.db1 = functions.firestore.document('testCollection1/testDocument1').onWhite((change,context) => {
+  functions.logger.info("DBChange", {structuredData: true});
   return null;
 });
