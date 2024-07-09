@@ -8,12 +8,23 @@
  */
 
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+admin.initializedApp();
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-// DBの書き換え時に実行
-exports.db1 = functions.firestore.document('testCollection1/testDocument1').onWhite((change,context) => {
-  functions.logger.info("DBChange", {structuredData: true});
-  return null;
+exports.helloWorld = functions.https.onRequest((request, response) => {
+  functions.logger.info("Hello logs!", {structuredData: true});
+    var docRef = admin.firestore().doc("testCollection1/testDocument1");
+    docRef.get().then(doc=>{
+      if(doc.exists){
+        response.send(doc.data())
+      }else{
+        response.send("nodata")
+      }
+      return null;
+    }).catch(error => {
+      response.send("error")
+    })
 });
