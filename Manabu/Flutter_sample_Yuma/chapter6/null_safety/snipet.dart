@@ -1,20 +1,23 @@
 void main(){
-  // 型宣言に?がつくとnullが認められる。Nullable型（Null許容型）
-  String? nullableString; // 暗黙的なnull
-  int? nullableInt = null; // 明示的なnull
+  String? nullableValue;
+  int? answer;
 
-  print(nullableString); // null
-  print(nullableInt); // null
+  // nullableValueがnullでない場合
+  nullableValue = "hoge";
+  answer = nullableValue?.length;
+  print(answer); // 4
 
-  // 通常の型宣言ではnullが認められない。Non-Nullable型（Null非許容型）
-  // 宣言時もしくは、利用される前に確実な値の設定が必要
-  String nonNullableString = "hoge";
-  int nonNullableInt;
-  nonNullableInt = 0;
+  // nullableValueがnullの場合
+  nullableValue = null;
+  // ?.ではなく.の場合は「null.length」となりエラー
+  answer = nullableValue?.length;
+  print(answer); // null
 
-  print(nonNullableString); // hoge
-  print(nonNullableInt); // 0
-
-  // 下記はNon-Nullable型にnullを入れようとしているので、コンパイルエラー
-  // nunNullableString = null;
+  /* ?.を使わない場合の等価な処理の例 */
+  if(nullableValue != null){
+    answer = nullableValue.length;
+  }else{
+    answer = null;
+  }
+  print(answer);
 }
