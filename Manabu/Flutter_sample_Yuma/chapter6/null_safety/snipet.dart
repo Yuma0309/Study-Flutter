@@ -1,23 +1,22 @@
 void main(){
-  String? nullableValue;
+  int? nullableValue;
   int? answer;
 
   // nullableValueがnullでない場合
-  nullableValue = "hoge";
-  answer = nullableValue?.length;
-  print(answer); // 4
+  nullableValue = 100;
+  answer = nullableValue ?? 0;
+  print(answer); // 100
 
   // nullableValueがnullの場合
   nullableValue = null;
-  // ?.ではなく.の場合は「null.length」となりエラー
-  answer = nullableValue?.length;
-  print(answer); // null
+  answer = nullableValue ?? 0;
+  print(answer); // 0
 
-  /* ?.を使わない場合の等価な処理の例 */
+  /* ??を使わない場合の等価な処理の例 */
   if(nullableValue != null){
-    answer = nullableValue.length;
+    answer = nullableValue;
   }else{
-    answer = null;
+    answer = 0;
   }
   print(answer);
 }
