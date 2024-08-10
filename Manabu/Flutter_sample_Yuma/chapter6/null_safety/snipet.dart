@@ -1,17 +1,23 @@
+import "dart:math" as math;
+
 void main(){
-  int? nullableValue;
+  int x = 10;
+  int? y = getNullable();
 
-  // nullableValueがnullでない場合
-  nullableValue = 100;
-  nullableValue ??= 0;
-  print(nullableValue); // 100
+  // x = y; // Non-NullableにNullableを入れるのはコンパイルエラー
+  // y = x; // NullableにNon-Nullableを入れるのはOK
 
-  // nullableValueがnullの場合
-  nullableValue = null;
-  nullableValue ??= 0;
-  print(nullableValue); // 0
+  if(y != null){
+    x = y; // nullチェックの後のためOK
+  }
+  print("x: " + x.toString() + "y: " + y.toString());
+}
 
-  /* ??を使わない場合の等価な処理の例 */
-  nullableValue = nullableValue ?? 0;
-  print(nullableValue);
+// ランダムでnullか1を返す関数
+getNullable(){
+  var rand = new math.Random();
+  if(rand.nextInt(2) == 0) {
+    return null;
+  }
+  return 1;
 }
