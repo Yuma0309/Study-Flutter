@@ -1,14 +1,15 @@
 import "dart:math" as math;
 
 void main(){
-  int x = 10;
+  int x = 20;
   int? y = getNullable();
 
-  // x = y; // Non-NullableにNullableを入れるのはコンパイルエラー
-  // y = x; // NullableにNon-Nullableを入れるのはOK
-
-  if(y != null){
-    x = y; // nullチェックの後のためOK
+  // Non-Nullableにキャストして代入する。
+  // yにnullが入った状態で行うと例外が発生するので注意
+  try{
+    x = y!;
+  }catch(e){
+    print(e);
   }
   print("x: " + x.toString() + "y: " + y.toString());
 }
