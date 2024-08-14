@@ -1,20 +1,31 @@
 import 'dart:async';
 
-void main() {
+void main() async {
   print("main begin");
   print(DateTime.now().toString());
   print("dart1 start");
-  print(asyncFunc("data1", 5));
+  Future<String> result1 = asyncFunc("data1", 5);
+  result1.then((result) {
+    print(result);
+  });
   print("dart2 start");
-  print(asyncFunc("data2", 3));
+  Future<String> result2 = asyncFunc("data2", 3);
+  result2.then((result) {
+    print(result);
+  });
   print("dart3 start");
-  print(asyncFunc("data3", 1));
+  Future<String> result3 = asyncFunc("data3", 1);
+  result3.then((result) {
+    print(result);
+  });
+
   print("main end");
+
 }
+
 // timeの時間分スリープし、その後現在時間を返す関数
 Future<String> asyncFunc(String name, int time) async {
   return Future.delayed(Duration(seconds: time), () {
-    print("${name} delay done");
     return "${name}:${DateTime.now().toString()}";
   });
 }
