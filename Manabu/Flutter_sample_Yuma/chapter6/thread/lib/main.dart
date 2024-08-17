@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:isolate';
+import 'package:flutter/foundation.dart';
+import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -57,49 +57,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 // グローバル関数として定義
-void childfunc(SendPort sendPort) {
-  int i = 0;
-  //親にメッセージを送る
-  Timer.periodic(const Duration(seconds: 1), (timer) => {sendPort.send(i++)});
+String childComputefunc(String name) {
+  print("SleepBegin");
+  sleep(const Duration(seconds: 5));
+  return "Hello:${name}";
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() async {
-    var recivePort = ReceivePort();
-    var sendPort = recivePort.sendPort;
-    late Capability capability;
-
-    // 子スレッドからメッセージを受け取る
-    recivePort.listen((message) {
-      print(message);
+    print("FuncStart");
+    compute(childComputefunc, "Parent").then((result) {
+      print(result);
     });
-
-    // Isolate(別スレッド)を作成
-    final childIsolate = await Isolate.spawn(childfunc, sendPort);
-
-    // 一時停止
-    Timer(const Duration(seconds: 5), () {
-      print("pausing");
-      capability = childIsolate.pause();
-    });
-    // 再会
-    Timer(const Duration(seconds: 10), () {
-      print("resume");
-      childIsolate.resume(capability);
-    });
-    // 終了
-    Timer(const Duration(seconds: 15), () {
-      print("kill");
-      recivePort.close();
-      childIsolate.kill();
-    });
-
     setState(() {
       _counter++;
     });
-    print("MainIsolateFuncDone");
+    print("FuncEnd");
   }
 
   @override
