@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'business_logic.dart';
 import 'dart:async';
 
 void main() {
@@ -56,100 +57,53 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  // Stream
-  final _counterStream = StreamController<int>();
+  /* floatingActionButton及び_incrementCounterは不要のため削除 */
+  var intStream = StreamController<int>();
+  var stringStream = StreamController<String>.broadcast();
 
-  // 初期化時にConsumerのコンストラクタにStreamを渡す
+  // 初期化時に各クラスにStreamを渡す
   @override
   void initState() {
     super.initState();
-    Consumer(_counterStream);
+    Generator(intStream);
+    Coordinator(intStream, stringStream);
+    Consumer(stringStream);
   }
 
   // 終了時にStreamを解放する
   @override
   void dispose() {
     super.dispose();
-    _counterStream.close();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-    // カウントアップした後に、Streamにカウンタ値を流す
-    _counterStream.sink.add(_counter);
+    intStream.close();
+    stringStream.close();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            StreamBuilder<String>(
+              stream: stringStream.stream,
+              initialData: "",
+              builder: (context, snapshot) {
+                return Text(
+                  '${snapshot.data}',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-}
-
-// Consumerクラス
-class Consumer {
-  // コンストラクタでint型のStreamを受け取る
-  Consumer(StreamController<int> consumeStream) {
-    // Streamをlistenしてデータが来たらターミナルに表示する
-    consumeStream.stream.listen((data) async {
-      print("consumerが$dataを使ったよ");
-    });
   }
 }
