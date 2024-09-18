@@ -12,10 +12,9 @@ class MySlider extends StatefulWidget {
 class _MySliderState extends State<MySlider> {
   @override
   Widget build(BuildContext context) {
-    final mydata = Provider.of<MyData>(context);
     return Slider(
-      value: mydata.value,
-      onChanged: (value) => mydata.value = value
+      value: context.select((MyData mydata) => mydata.value),
+      onChanged: (value) => context.read<MyData>().value = value
     );
   }
 }
