@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'mydata.dart';
 
-// 1-1. グローバル変数にProviderを定義する
 final _mydataProvider = StateNotifierProvider<MyData, double>((ref) => MyData());
 
 void main() {
-  // 1-2. ProviderScopeを設定する
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -68,31 +66,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 2-1. Text用にConsumerを使う
-            Consumer(builder: (context, ref, child) {
-              return Text(
-                // 2-2.refを用いてstateの値を取り出す
-                ref.watch(_mydataProvider).toStringAsFixed(2),
-                style: const TextStyle(fontSize: 100),
-              );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: const MyContents());
+  }
+}
+
+// HookConsumerWidgetを継承するために切り出し
+class MyContents extends HookConsumerWidget {
+  const MyContents({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // ref.watchでプロバイダーにアクセスしスライダー値を管理
+    double slidevalue = ref.watch(_mydataProvider);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          slidevalue.toStringAsFixed(2),
+          style: const TextStyle(fontSize: 100),
+        ),
+        Slider(
+            value: slidevalue,
+            onChanged: (value) {
+              ref.read(_mydataProvider.notifier).changeState(value);
             }),
-            // 3-1. Slider用にConsumerを使う
-            Consumer(builder: (context, ref, child) {
-              return Slider(
-                // 3-2.refを用いてstateの値を取り出す
-                value: ref.watch(_mydataProvider),
-                // 3-3.changeStateで状態を変える
-                onChanged: (value) =>
-                  ref.read(_mydataProvider.notifier).changeState(value));
-            }),
-          ],
-      ),
+      ],
     );
   }
 }
