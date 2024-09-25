@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'mydata.dart';
-
-final _mydataProvider = StateNotifierProvider<MyData, double>((ref) => MyData());
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 void main() {
   runApp(
@@ -73,27 +71,25 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// HookConsumerWidgetを継承するために切り出し
 class MyContents extends HookConsumerWidget {
   const MyContents({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watchでプロバイダーにアクセスしスライダー値を管理
-    double slidevalue = ref.watch(_mydataProvider);
+    // useStateでスライダー値を管理
+    final slidevalue = useState<double>(0.5);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          slidevalue.toStringAsFixed(2),
+          slidevalue.value.toStringAsFixed(2),
           style: const TextStyle(fontSize: 100),
         ),
         Slider(
-            value: slidevalue,
-            onChanged: (value) {
-              ref.read(_mydataProvider.notifier).changeState(value);
-            }),
+            value: slidevalue.value,
+            onChanged: (value) => slidevalue.value=value
+        )
       ],
     );
   }
