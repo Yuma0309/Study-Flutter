@@ -1,35 +1,41 @@
 import 'package:meta/meta.dart';
 
-// Mutableな可変クラス
-class MutableUser{
-  String name;
-  int age;
-  MutableUser({required this.name,required this.age});
+// Immutableな不変クラス
+// @immutableアノテーションをつけると、Immutableになっていない場合に警告が出る
+@immutable
+class ImmutableUser{
+  final String name;
+  final int age;
+  const ImmutableUser({required this.name,required this.age});
 
   // print時の文字列をカスタマイズ
   @override
   String toString() {
-    return "私は$nameです。$age歳です。";
+    return "私は$nameです。$age歳です。 ハッシュ値=&hashCode";
+  }
+
+  // コピー用のメソッド
+  ImmutableUser copyWith({String? name,int? age}){
+    // 値が設定されていればその値を使い、なければ既存の値を使って新しいImmutableUserを返す
+    return ImmutableUser(name: name ?? this.name, age: age ?? this.age);
   }
 }
 
 void main() {
-  final MutableUser mutableUser1 = MutableUser(name:"kazutxt",age:30);
-  final MutableUser mutableUser2 = mutableUser1;
+  // Immutable
+  const ImmutableUser immutableUser1 = ImmutableUser(name:"kazutxt",age:30);
+  const ImmutableUser immutableUser2 = immutableUser1;
 
-  print("MutableUser1/変更前");
-  print("mutableUser1:$mutableUser1");
-  print("mutableUser2:$mutableUser2");
+  // constなので再代入はできない
+  // immutableUser2 = MutableUser(name:"FakerName",age:99);
+  // immutableUser1.name = "FakeName";
 
-  // finalなので再代入は、できないように保護できる
-  // mutableUser2 = MutableUser(name:"FakeName",age:99);
+  // 既存のImmutableUserの値を変えて使いたい場合は、copyWithでコピーをして使う
+  final ImmutableUser immutableUser3 = immutableUser1.copyWith();
+  final ImmutableUser immutableUser4 = immutableUser1.copyWith(name:"ReName");
 
-  // mutableUser1のフィールドの上書きは可能
-  mutableUser1.name = "FakeName";
-  mutableUser1.age = 0;
-
-  // mutableUser1とmutableUser2は同じ参照を持っているため、mutableUser2の値も変わる
-  print("MutableUser1/変更後");
-  print("mutableUser1:$mutableUser1");
-  print("mutableUser2:$mutableUser2");
+  print(immutableUser1);
+  print(immutableUser2);
+  print(immutableUser3);
+  print(immutableUser4);
 }
