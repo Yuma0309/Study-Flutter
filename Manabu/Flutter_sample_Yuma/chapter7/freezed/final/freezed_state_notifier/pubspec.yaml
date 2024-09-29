@@ -40,7 +40,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
   freezed: ^2.1.0+1
   build_runner: ^2.2.0
 
