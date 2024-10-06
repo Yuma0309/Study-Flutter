@@ -1,14 +1,65 @@
-import 'dart:convert';
-import 'user.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'mydata.dart';
+
+final _mydataProvider = StateNotifierProvider<MyDataStateNotifier, MyData>((ref) => MyDataStateNotifier());
 
 void main() {
-  // JSON文字列→Map→Userクラス
-  String jsonString = '{"name":"kazutxt","age":30}';
-  User fromJsonUser = User.fromJson(json.decode(jsonString));
-  print(fromJsonUser);
+  runApp(const ProviderScope(child: MyApp()));
+}
 
-  // Userクラス→Map→JSON文字列
-  User toJsonUser = User('kazutxt2', 32);
-  Map<String, dynamic> jsonData = toJsonUser.toJson();
-  print(jsonData);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: const MyContents());
+  }
+}
+
+class MyContents extends HookConsumerWidget {
+  const MyContents({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    double slidevalue = ref.watch(_mydataProvider).value;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          slidevalue.toStringAsFixed(2),
+          style: const TextStyle(fontSize: 100),
+        ),
+        Slider(
+          value: slidevalue,
+          onChanged: (value) => ref.read(_mydataProvider.notifier).changeState(value)),
+      ],
+    );
+  }
 }
